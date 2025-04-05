@@ -440,8 +440,8 @@ li::before {
                 <h3>{{ result.disease_en }} ({{ result.disease_te }})</h3>
                 
                 <div class="language-tabs">
-                    <button class="tab-button active" onclick="showTab('en', {{ loop.index }})">English</button>
-                    <button class="tab-button" onclick="showTab('te', {{ loop.index }})">తెలుగు</button>
+                    <button class="tab-button active" data-tab="en-{{ loop.index }}">English</button>
+                    <button class="tab-button" data-tab="te-{{ loop.index }}">తెలుగు</button>
                 </div>
 
                 <!-- English Content -->
@@ -486,20 +486,25 @@ li::before {
     </div>
 
     <script>
-    function showTab(lang, index) {
-        // Hide all tabs for this disease card
-        const card = document.querySelectorAll('.disease-card')[index-1];
-        card.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
-        
-        // Show selected tab
-        document.getElementById(`${lang}-${index}`).style.display = 'block';
-        
-        // Update button styles
-        card.querySelectorAll('.tab-button').forEach(btn => {
-            btn.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Attach event listeners to all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    const card = this.closest('.disease-card');
+                    
+                    // Deactivate all tabs in this card
+                    card.querySelectorAll('.tab-button').forEach(btn => 
+                        btn.classList.remove('active'));
+                    card.querySelectorAll('.tab-content').forEach(tab => 
+                        tab.classList.remove('active'));
+                    
+                    // Activate clicked tab
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
         });
-        event.target.classList.add('active');
-    }
     </script>
 </body>
 </html>
