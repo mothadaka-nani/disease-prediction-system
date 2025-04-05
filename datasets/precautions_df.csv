@@ -1,4 +1,4 @@
-,Disease,Precaution_1,Precaution_2,Precaution_3,Precaution_4
+,Disease,Precaution_1,Precaution_2,Precaution_3,Precaution_4,Precaution_1_Telugu,Precaution_2_Telugu,Precaution_3_Telugu,Precaution_4_Telugu
 0,Drug Reaction,stop irritation,consult nearest hospital,stop taking drug,follow up
 1,Malaria,Consult nearest hospital,avoid oily food,avoid non veg food,keep mosquitos out
 2,Allergy,apply calamine,cover area with bandage,,use ice to compress itching
@@ -26,7 +26,7 @@
 24,Paralysis (brain hemorrhage),massage,eat healthy,exercise,consult doctor
 25,Typhoid,eat high calorie vegitables,antiboitic therapy,consult doctor,medication
 26,Hepatitis B,consult nearest hospital,vaccination,eat healthy,medication
-27,Fungal infection,bath twice,use detol or neem in bathing water,keep infected area dry,use clean cloths
+27,Fungal infection,"Keep skin dry","Use antifungal powder","Wear loose clothes","Avoid sharing towels","చర్మాన్ని పొడిగా ఉంచండి","యాంటిఫంగల్ పౌడర్ ఉపయోగించండి","విరివైన బట్టలు ధరించండి","టవల్లను పంచుకోవడం నివారించండి"
 28,Hepatitis C,Consult nearest hospital,vaccination,eat healthy,medication
 29,Migraine,meditation,reduce stress,use poloroid glasses in sun,consult doctor
 30,Bronchial Asthma,switch to loose cloothing,take deep breaths,get away from trigger,seek help

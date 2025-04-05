@@ -1,6 +1,6 @@
-Disease,Diet
-Fungal infection,"['Antifungal Diet', 'Probiotics', 'Garlic', 'Coconut oil', 'Turmeric']"
-Allergy,"['Elimination Diet', 'Omega-3-rich foods', 'Vitamin C-rich foods', 'Quercetin-rich foods', 'Probiotics']"
+Disease,Diet,Diet_Telugu
+Fungal infection,"Avoid sugary foods","చక్కర ఉన్న ఆహారాలు తినకండి"
+Allergy,"Avoid dairy products","డెయిరీ ఉత్పత్తులను నివారించండి"
 GERD,"['Low-Acid Diet', 'Fiber-rich foods', 'Ginger', 'Licorice', 'Aloe vera juice']"
 Chronic cholestasis,"['Low-Fat Diet', 'High-Fiber Diet', 'Lean proteins', 'Whole grains', 'Fresh fruits and vegetables']"
 Drug Reaction,"['Antihistamine Diet', 'Omega-3-rich foods', 'Vitamin C-rich foods', 'Quercetin-rich foods', 'Probiotics']"

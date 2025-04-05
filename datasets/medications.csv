@@ -1,6 +1,6 @@
-Disease,Medication
-Fungal infection,"['Antifungal Cream', 'Fluconazole', 'Terbinafine', 'Clotrimazole', 'Ketoconazole']"
-Allergy,"['Antihistamines', 'Decongestants', 'Epinephrine', 'Corticosteroids', 'Immunotherapy']"
+Disease,Medication,Medication_Telugu
+Fungal infection,"Clotrimazole cream","క్లోట్రిమాజోల్ క్రీమ్"
+Allergy,"Cetirizine 10mg","సెటిరిజైన్ 10mg"
 GERD,"['Proton Pump Inhibitors (PPIs)', 'H2 Blockers', 'Antacids', 'Prokinetics', 'Antibiotics']"
 Chronic cholestasis,"['Ursodeoxycholic acid', 'Cholestyramine', 'Methotrexate', 'Corticosteroids', 'Liver transplant']"
 Drug Reaction,"['Antihistamines', 'Epinephrine', 'Corticosteroids', 'Antibiotics', 'Antifungal Cream']"

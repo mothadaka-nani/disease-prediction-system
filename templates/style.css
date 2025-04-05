@@ -1,0 +1,207 @@
+
+    :root {
+        --primary: #4A90E2;
+        --secondary: #6C5CE7;
+        --accent: #00C853;
+        --background: #f8f9fa;
+        --text: #2d3436;
+    }
+
+    body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 2rem;
+        color: var(--text);
+        line-height: 1.6;
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 2.5rem;
+        max-width: 800px;
+        margin: 2rem auto;
+        transition: transform 0.3s ease;
+    }
+
+    h1 {
+        color: var(--secondary);
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #inputSection {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+    }
+
+    form {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        outline: none;
+    }
+
+    button {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+    }
+
+    .disease-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .language-tabs {
+        display: flex;
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .tab-button {
+        background: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        color: var(--text);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tab-button.active {
+        background: var(--primary);
+        color: white;
+    }
+
+    .tab-button:not(.active):hover {
+        background: rgba(74, 144, 226, 0.1);
+    }
+
+    .tab-content {
+        padding: 1.5rem;
+        background: var(--background);
+        border-radius: 12px;
+        margin-top: 1rem;
+    }
+
+    h3 {
+        color: var(--secondary);
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    h4 {
+        color: var(--primary);
+        font-size: 1.3rem;
+        margin: 1.5rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 0.8rem;
+    }
+
+    li {
+        padding: 0.8rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    li::before {
+        content: "•";
+        color: var(--accent);
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .error {
+        color: #e74c3c;
+        background: #ffeeed;
+        padding: 1rem;
+        border-radius: 8px;
+        border: 1px solid #ffccc7;
+    }
+
+    /* Telugu Font Styling */
+    [lang="te"] {
+        font-family: 'Noto Sans Telugu', 'Segoe UI', sans-serif;
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 1.5rem;
+            margin: 1rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .disease-card {
+            padding: 1.5rem;
+        }
+    }
