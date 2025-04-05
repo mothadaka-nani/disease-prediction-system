@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Disease Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Prediction System</h1>
+        <form id="symptom-form">
+            <label for="symptoms">Enter Symptoms (use"_" separate word):</label>
+            <input type="text" id="symptoms" placeholder="e.g. itching, cough">
+            <button type="submit">Predict Disease</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('symptom-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const symptoms = document.getElementById('symptoms').value.split(',').map(symptom => symptom.trim());
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ symptoms: symptoms })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = '<h2>Predicted Diseases and Details:</h2>';
+                for (const disease in data) {
+                    resultDiv.innerHTML += `<h3>${disease}</h3>`;
+                    const details = data[disease];
+                    for (const key in details) {
+                        resultDiv.innerHTML += `<p><strong>${key}:</strong> ${details[key]}</p>`;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
