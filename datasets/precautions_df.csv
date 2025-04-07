@@ -1,42 +1,42 @@
 ,Disease,Precaution_1,Precaution_2,Precaution_3,Precaution_4,Precaution_1_Telugu,Precaution_2_Telugu,Precaution_3_Telugu,Precaution_4_Telugu
-0,Drug Reaction,stop irritation,consult nearest hospital,stop taking drug,follow up
-1,Malaria,Consult nearest hospital,avoid oily food,avoid non veg food,keep mosquitos out
-2,Allergy,apply calamine,cover area with bandage,,use ice to compress itching
-3,Hypothyroidism,reduce stress,exercise,eat healthy,get proper sleep
-4,Psoriasis,wash hands with warm soapy water,stop bleeding using pressure,consult doctor,salt baths
-5,GERD,avoid fatty spicy food,avoid lying down after eating,maintain healthy weight,exercise
-6,Chronic cholestasis,cold baths,anti itch medicine,consult doctor,eat healthy
-7,hepatitis A,Consult nearest hospital,wash hands through,avoid fatty spicy food,medication
-8,Osteoarthristis,acetaminophen,consult nearest hospital,follow up,salt baths
-9,(vertigo) Paroymsal  Positional Vertigo,lie down,avoid sudden change in body,avoid abrupt head movment,relax
-10,Hypoglycemia,lie down on side,check in pulse,drink sugary drinks,consult doctor
-11,Acne,bath twice,avoid fatty spicy food,drink plenty of water,avoid too many products
-12,Diabetes ,have balanced diet,exercise,consult doctor,follow up
-13,Impetigo,soak affected area in warm water,use antibiotics,remove scabs with wet compressed cloth,consult doctor
-14,Hypertension ,meditation,salt baths,reduce stress,get proper sleep
-15,Peptic ulcer diseae,avoid fatty spicy food,consume probiotic food,eliminate milk,limit alcohol
-16,Dimorphic hemmorhoids(piles),avoid fatty spicy food,consume witch hazel,warm bath with epsom salt,consume alovera juice
-17,Common Cold,drink vitamin c rich drinks,take vapour,avoid cold food,keep fever in check
-18,Chicken pox,use neem in bathing ,consume neem leaves,take vaccine,avoid public places
-19,Cervical spondylosis,use heating pad or cold pack,exercise,take otc pain reliver,consult doctor
-20,Hyperthyroidism,eat healthy,massage,use lemon balm,take radioactive iodine treatment
-21,Urinary tract infection,drink plenty of water,increase vitamin c intake,drink cranberry juice,take probiotics
-22,Varicose veins,lie down flat and raise the leg high,use oinments,use vein compression,dont stand still for long
-23,AIDS,avoid open cuts,wear ppe if possible,consult doctor,follow up
-24,Paralysis (brain hemorrhage),massage,eat healthy,exercise,consult doctor
-25,Typhoid,eat high calorie vegitables,antiboitic therapy,consult doctor,medication
-26,Hepatitis B,consult nearest hospital,vaccination,eat healthy,medication
-27,Fungal infection,"Keep skin dry","Use antifungal powder","Wear loose clothes","Avoid sharing towels","చర్మాన్ని పొడిగా ఉంచండి","యాంటిఫంగల్ పౌడర్ ఉపయోగించండి","విరివైన బట్టలు ధరించండి","టవల్లను పంచుకోవడం నివారించండి"
-28,Hepatitis C,Consult nearest hospital,vaccination,eat healthy,medication
-29,Migraine,meditation,reduce stress,use poloroid glasses in sun,consult doctor
-30,Bronchial Asthma,switch to loose cloothing,take deep breaths,get away from trigger,seek help
-31,Alcoholic hepatitis,stop alcohol consumption,consult doctor,medication,follow up
-32,Jaundice,drink plenty of water,consume milk thistle,eat fruits and high fiberous food,medication
-33,Hepatitis E,stop alcohol consumption,rest,consult doctor,medication
-34,Dengue,drink papaya leaf juice,avoid fatty spicy food,keep mosquitos away,keep hydrated
-35,Hepatitis D,consult doctor,medication,eat healthy,follow up
-36,Heart attack,call ambulance,chew or swallow asprin,keep calm,
-37,Pneumonia,consult doctor,medication,rest,follow up
-38,Arthritis,exercise,use hot and cold therapy,try acupuncture,massage
-39,Gastroenteritis,stop eating solid food for while,try taking small sips of water,rest,ease back into eating
-40,Tuberculosis,cover mouth,consult doctor,medication,rest
+0,Drug Reaction,stop irritation,consult nearest hospital,stop taking drug,follow up,అలర్జీ ని ఆపండి,సమీపంలోని ఆసుపత్రిని సంప్రదించండి,మందును తీసుకోవడం ఆపండి,ఫాలో అప్ చేయండి
+1,Malaria,Consult nearest hospital,avoid oily food,avoid non veg food,keep mosquitos out,సమీపంలోని ఆసుపత్రిని సంప్రదించండి,ఆమ్లభరిత ఆహారం తినకండి,నాన్ వెజ్ తినకండి,దోమలను దూరంగా ఉంచండి
+2,Allergy,apply calamine,cover area with bandage,,use ice to compress itching,కేలమైన్ వేయండి,బ్యాండేజ్ తో కప్పండి,,ఖజురాన్ని తగ్గించడానికి ఐస్ ఉపయోగించండి
+3,Hypothyroidism,reduce stress,exercise,eat healthy,get proper sleep,మానసిక ఒత్తిడి తగ్గించండి,వ్యాయామం చేయండి,ఆరోగ్యకరమైన ఆహారం తినండి,సరిగా నిద్రపోవాలి
+4,Psoriasis,wash hands with warm soapy water,stop bleeding using pressure,consult doctor,salt baths,గోరువెచ్చని సబ్బుతో చేతులు కడగండి,ఒత్తిడితో రక్తస్రావం ఆపండి,డాక్టర్‌ను సంప్రదించండి,ఉప్పు నీటితో స్నానం చేయండి
+5,GERD,avoid fatty spicy food,avoid lying down after eating,maintain healthy weight,exercise,కొవ్వు మరియు మసాలా ఆహారం నివారించండి,తినిన వెంటనే పడుకోకండి,ఆరోగ్యకరమైన బరువును నిర్వహించండి,వ్యాయామం చేయండి
+6,Chronic cholestasis,cold baths,anti itch medicine,consult doctor,eat healthy,చల్లటి నీటితో స్నానం చేయండి,ఖజురాన్ని తగ్గించే మందులు వాడండి,డాక్టర్‌ను సంప్రదించండి,ఆరోగ్యకరమైన ఆహారం తినండి
+7,hepatitis A,Consult nearest hospital,wash hands through,avoid fatty spicy food,medication,సమీప ఆసుపత్రిని సంప్రదించండి,చేతులను శుభ్రంగా కడగండి,మసాలా ఆహారం నివారించండి,మందులు వాడండి
+8,Osteoarthristis,acetaminophen,consult nearest hospital,follow up,salt baths,అసిటమినోఫెన్ వాడండి,సమీప ఆసుపత్రిని సంప్రదించండి,ఫాలో అప్ చేయండి,ఉప్పు నీటితో స్నానం చేయండి
+9,(vertigo) Paroymsal  Positional Vertigo,lie down,avoid sudden change in body,avoid abrupt head movment,relax,పడుకోండి,శరీర దిశలో అకస్మాత్ మార్పులు నివారించండి,తల తిప్పే వేగం తగ్గించండి,విశ్రాంతిగా ఉండండి
+10,Hypoglycemia,lie down on side,check in pulse,drink sugary drinks,consult doctor,వైపు పడుకోండి,పల్స్ తనిఖీ చేయండి,పంచదార కలిగిన పానీయాలు త్రాగండి,డాక్టర్‌ను సంప్రదించండి
+11,Acne,bath twice,avoid fatty spicy food,drink plenty of water,avoid too many products,రోజుకు రెండు సార్లు స్నానం చేయండి,కొవ్వు మరియు మసాలా ఆహారాన్ని నివారించండి,చాలా నీరు తాగండి,చాలా ఉత్పత్తులు ఉపయోగించకండి
+12,Diabetes ,have balanced diet,exercise,consult doctor,follow up,సమతుల్య ఆహారం తీసుకోండి,వ్యాయామం చేయండి,డాక్టర్‌ను సంప్రదించండి,ఫాలో అప్ చేయండి
+13,Impetigo,soak affected area in warm water,use antibiotics,remove scabs with wet compressed cloth,consult doctor,బాధిత ప్రాంతాన్ని గోరువెచ్చని నీటిలో ముంచండి,యాంటీబయాటిక్స్ వాడండి,తడి బట్టతో పొట్టు తొలగించండి,డాక్టర్‌ను సంప్రదించండి
+14,Hypertension ,meditation,salt baths,reduce stress,get proper sleep,ధ్యానం చేయండి,ఉప్పు స్నానాలు చేయండి,ఒత్తిడిని తగ్గించండి,సరైన నిద్ర పొందండి
+15,Peptic ulcer diseae,avoid fatty spicy food,consume probiotic food,eliminate milk,limit alcohol,కొవ్వు మరియు మసాలా ఆహారాన్ని నివారించండి,ప్రొబయోటిక్ ఆహారం తీసుకోండి,పాలు తీసుకోవడం ఆపండి,మద్యం పరిమితం చేయండి
+16,Dimorphic hemmorhoids(piles),avoid fatty spicy food,consume witch hazel,warm bath with epsom salt,consume alovera juice,కొవ్వు మరియు మసాలా ఆహారాన్ని నివారించండి,విచ్ హాజెల్ తీసుకోండి,ఎప్సమ్ ఉప్పుతో గోరువెచ్చని స్నానం చేయండి,అలోవెరా రసం తీసుకోండి
+17,Common Cold,drink vitamin c rich drinks,take vapour,avoid cold food,keep fever in check,విటమిన్ C అధికంగా ఉన్న పానీయాలు తాగండి,వేపర్ తీసుకోండి,చల్లని ఆహారం నివారించండి,జ్వరాన్ని నియంత్రించండి
+18,Chicken pox,use neem in bathing ,consume neem leaves,take vaccine,avoid public places,స్నానంలో వేపను ఉపయోగించండి,వేప ఆకులను తినండి,టీకా వేయించుకోండి,ప్రజా ప్రదేశాలను నివారించండి
+19,Cervical spondylosis,use heating pad or cold pack,exercise,take otc pain reliver,consult doctor,వేడి లేదా చల్లని ప్యాక్ ఉపయోగించండి,వ్యాయామం చేయండి,ఓటిసి నొప్పి నివారిణి తీసుకోండి,డాక్టర్‌ను సంప్రదించండి
+20,Hyperthyroidism,eat healthy,massage,use lemon balm,take radioactive iodine treatment,ఆరోగ్యకరమైన ఆహారం తీసుకోండి,మసాజ్ చేయండి,నిమ్మగడ్డి ఉపయోగించండి,రేడియో యాక్టివ్ అయోడిన్ చికిత్స తీసుకోండి
+21,Urinary tract infection,drink plenty of water,increase vitamin c intake,drink cranberry juice,take probiotics,చాలా నీరు తాగండి,విటమిన్ C తినే మోతాదును పెంచండి,క్రాన్‌బెర్రీ జ్యూస్ తాగండి,ప్రొబయోటిక్స్ తీసుకోండి
+22,Varicose veins,lie down flat and raise the leg high,use oinments,use vein compression,dont stand still for long,నితారంగా పడుకోండి మరియు కాలు పైకెత్తండి,ఆయిల్ లేదా క్రీమ్ వాడండి,వెయిన్ కంప్రెషన్ వాడండి,చాలా సమయం నిలబడి ఉండకండి
+23,AIDS,avoid open cuts,wear ppe if possible,consult doctor,follow up,ఓపెన్ గాయాలను నివారించండి,సాధ్యమైతే పీపీఈ ధరించండి,డాక్టర్‌ను సంప్రదించండి,ఫాలో అప్ చేయండి
+24,Paralysis (brain hemorrhage),massage,eat healthy,exercise,consult doctor,మసాజ్ చేయండి,ఆరోగ్యకరమైన ఆహారం తీసుకోండి,వ్యాయామం చేయండి,డాక్టర్‌ను సంప్రదించండి
+25,Typhoid,eat high calorie vegitables,antiboitic therapy,consult doctor,medication,అధిక క్యాలొరీల కూరగాయలు తినండి,యాంటీబయాటిక్ థెరపీ తీసుకోండి,డాక్టర్‌ను సంప్రదించండి,మందులు తీసుకోండి
+26,Hepatitis B,consult nearest hospital,vaccination,eat healthy,medication,సమీపంలోని ఆసుపత్రిని సంప్రదించండి,టీకా వేయించుకోండి,ఆరోగ్యకరమైన ఆహారం తీసుకోండి,మందులు తీసుకోండి
+27,Fungal infection,Keep skin dry,Use antifungal powder,Wear loose clothes,Avoid sharing towels,చర్మాన్ని పొడిగా ఉంచండి,యాంటిఫంగల్ పౌడర్ ఉపయోగించండి,విరివైన బట్టలు ధరించండి,టవల్లను పంచుకోవడం నివారించండి
+28,Hepatitis C,Consult nearest hospital,vaccination,eat healthy,medication,సమీపంలోని ఆసుపత్రిని సంప్రదించండి,టీకా వేయించుకోండి,ఆరోగ్యకరమైన ఆహారం తీసుకోండి,మందులు తీసుకోండి
+29,Migraine,meditation,reduce stress,use poloroid glasses in sun,consult doctor,ధ్యానం చేయండి,ఒత్తిడిని తగ్గించండి,సూర్యంలో పొలారాయిడ్ కళ్లద్దాలు వాడండి,డాక్టర్‌ను సంప్రదించండి
+30,Bronchial Asthma,switch to loose cloothing,take deep breaths,get away from trigger,seek help,విరివైన బట్టలు ధరించండి,లోతుగా శ్వాస తీసుకోండి,ట్రిగ్గర్‌ నుంచి దూరంగా ఉండండి,సహాయం కోరండి
+31,Alcoholic hepatitis,stop alcohol consumption,consult doctor,medication,follow up,మద్యం సేవను ఆపండి,డాక్టర్‌ను సంప్రదించండి,మందులు వాడండి,ఫాలో అప్ చేయండి
+32,Jaundice,drink plenty of water,consume milk thistle,eat fruits and high fiberous food,medication,చాలా నీరు త్రాగండి,మిల్క్ తిసిల్ వాడండి,పండ్లు మరియు ఫైబర్ ఆహారం తినండి,మందులు వాడండి
+33,Hepatitis E,stop alcohol consumption,rest,consult doctor,medication,మద్యం సేవను ఆపండి,విశ్రాంతి తీసుకోండి,డాక్టర్‌ను సంప్రదించండి,మందులు వాడండి
+34,Dengue,drink papaya leaf juice,avoid fatty spicy food,keep mosquitos away,keep hydrated,బాబాయ ఆకు జ్యూస్ త్రాగండి,కొవ్వు మరియు మసాలా ఆహారం నివారించండి,దోమల నుండి దూరంగా ఉండండి,దాహం నివారించుకోండి
+35,Hepatitis D,consult doctor,medication,eat healthy,follow up,డాక్టర్‌ను సంప్రదించండి,మందులు వాడండి,ఆరోగ్యకరమైన ఆహారం తినండి,ఫాలో అప్ చేయండి
+36,Heart attack,call ambulance,chew or swallow asprin,keep calm,,అంబులెన్స్ కు కాల్ చేయండి,ఆస్పిరిన్ నమలండి లేదా మింగండి,శాంతంగా ఉండండి,
+37,Pneumonia,consult doctor,medication,rest,follow up,డాక్టర్‌ను సంప్రదించండి,మందులు వాడండి,విశ్రాంతి తీసుకోండి,ఫాలో అప్ చేయండి
+38,Arthritis,exercise,use hot and cold therapy,try acupuncture,massage,వ్యాయామం చేయండి,వెచ్చని మరియు చల్లటి చికిత్సలు వాడండి,ఆకుపంక్చర్ ప్రయత్నించండి,మసాజ్ చేయండి
+39,Gastroenteritis,stop eating solid food for while,try taking small sips of water,rest,ease back into eating,కొంతకాలం ఘన ఆహారం తినకండి,చిన్న మోతాదులో నీరు త్రాగండి,విశ్రాంతి తీసుకోండి,మళ్లీ తినడాన్ని నెమ్మదిగా ప్రారంభించండి
+40,Tuberculosis,cover mouth,consult doctor,medication,rest,నోరు మూసి ఉంచండి,డాక్టర్‌ను సంప్రదించండి,మందులు వాడండి,విశ్రాంతి తీసుకోండి

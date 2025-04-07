@@ -2,7 +2,6 @@ from flask import Flask, request, render_template
 import pickle
 import pandas as pd
 import warnings
-import numpy as np
 from sklearn.exceptions import InconsistentVersionWarning
 
 # Suppress warnings
@@ -10,11 +9,13 @@ warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
 
 # Load dataset details
 try:
-    # Load symptoms data
+    # Load all datasets
     symptoms_df = pd.read_csv('datasets/symtoms_df.csv').fillna('')
     symptoms_df['Telugu'] = symptoms_df['Telugu'].str.strip()
     
-    # Load other datasets
+    disease_translations = pd.read_csv('datasets/disease_translations.csv')
+    disease_dict = dict(zip(disease_translations['English'], disease_translations['Telugu']))
+    
     datasets = {
         'description': pd.read_csv('datasets/description.csv'),
         'precautions': pd.read_csv('datasets/precautions_df.csv'),
@@ -40,6 +41,11 @@ with warnings.catch_warnings():
 
 app = Flask(__name__)
 
+def filter_unwanted_diseases(diseases):
+    """Filter out HIV and other unwanted default predictions"""
+    unwanted_diseases = ['hiv', 'HIV', 'AIDS', 'aids']  # Add any other diseases to filter
+    return [d for d in diseases if d.lower() not in [x.lower() for x in unwanted_diseases]]
+
 def get_symptoms_for_disease(disease):
     """Get symptoms for a disease handling empty columns"""
     symptoms = []
@@ -51,7 +57,7 @@ def get_symptoms_for_disease(disease):
             for i in range(1, 5) 
             if pd.notnull(row[f'Symptom_{i}']) and str(row[f'Symptom_{i}']).strip() != ''
         ])
-    return list(set(symptoms))  # Remove duplicates
+    return list(set(symptoms))
 
 def translate_symptom(symptom):
     """Translate single symptom using the loaded dataframe"""
@@ -124,6 +130,14 @@ def home():
             input_vector = symptom_mapping.transform([symptoms_list])
             predicted_diseases = model.predict(input_vector)
             
+            # Filter out HIV and other unwanted diseases
+            predicted_diseases = filter_unwanted_diseases(predicted_diseases)
+            
+            # If no diseases left after filtering, show message
+            if not predicted_diseases:
+                return render_template('index.html', 
+                                    info="No relevant diseases found for the entered symptoms")
+            
             # Prepare results
             results = []
             for disease in predicted_diseases:
@@ -131,9 +145,7 @@ def home():
                 if details:
                     results.append({
                         'disease_en': disease,
-                        'disease_te': datasets['description'][
-                            datasets['description']['Disease'] == disease
-                        ]['Description_Telugu'].values[0],
+                        'disease_te': disease_dict.get(disease, disease),
                         'input_symptoms_en': symptoms_list,
                         'input_symptoms_te': [translate_symptom(s) for s in symptoms_list],
                         'details': details
@@ -148,6 +160,314 @@ def home():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+    
+# from flask import Flask, request, render_template
+# import pickle
+# import pandas as pd
+# import warnings
+# from sklearn.exceptions import InconsistentVersionWarning
+
+# # Suppress warnings
+# warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+
+# # Load dataset details
+# try:
+#     # Load all datasets
+#     symptoms_df = pd.read_csv('datasets/symtoms_df.csv').fillna('')
+#     symptoms_df['Telugu'] = symptoms_df['Telugu'].str.strip()
+    
+#     disease_translations = pd.read_csv('datasets/disease_translations.csv')
+#     disease_dict = dict(zip(disease_translations['English'], disease_translations['Telugu']))
+    
+#     datasets = {
+#         'description': pd.read_csv('datasets/description.csv'),
+#         'precautions': pd.read_csv('datasets/precautions_df.csv'),
+#         'medications': pd.read_csv('datasets/medications.csv'),
+#         'diets': pd.read_csv('datasets/diets.csv'),
+#         'workout': pd.read_csv('datasets/workout_df.csv')
+#     }
+# except Exception as e:
+#     print(f"Error loading dataset files: {e}")
+#     exit(1)
+
+# # Load ML models
+# with warnings.catch_warnings():
+#     warnings.simplefilter("ignore")
+#     try:
+#         with open('symptom_disease_model.pkl', 'rb') as f:
+#             model = pickle.load(f)
+#         with open('symptom_mapping.pkl', 'rb') as f:
+#             symptom_mapping = pickle.load(f)
+#     except Exception as e:
+#         print(f"Error loading models: {e}")
+#         exit(1)
+
+# app = Flask(__name__)
+
+# def filter_hiv_disease(diseases):
+#     """Filter out HIV from predicted diseases if it's a default prediction"""
+#     return [d for d in diseases if d.lower() != 'hiv']
+
+# def get_symptoms_for_disease(disease):
+#     """Get symptoms for a disease handling empty columns"""
+#     symptoms = []
+#     disease_rows = symptoms_df[symptoms_df['Disease'] == disease]
+    
+#     for _, row in disease_rows.iterrows():
+#         symptoms.extend([
+#             str(row[f'Symptom_{i}']).strip() 
+#             for i in range(1, 5) 
+#             if pd.notnull(row[f'Symptom_{i}']) and str(row[f'Symptom_{i}']).strip() != ''
+#         ])
+#     return list(set(symptoms))
+
+# def translate_symptom(symptom):
+#     """Translate single symptom using the loaded dataframe"""
+#     translation = symptoms_df.loc[
+#         (symptoms_df['Symptom_1'] == symptom) |
+#         (symptoms_df['Symptom_2'] == symptom) |
+#         (symptoms_df['Symptom_3'] == symptom) |
+#         (symptoms_df['Symptom_4'] == symptom),
+#         'Telugu'
+#     ].values
+    
+#     if len(translation) > 0 and translation[0] != '':
+#         return translation[0]
+#     return symptom
+
+# def get_disease_details(disease):
+#     """Get comprehensive disease details in both languages"""
+#     details = {'en': {}, 'te': {}}
+    
+#     try:
+#         # Get symptoms
+#         en_symptoms = get_symptoms_for_disease(disease)
+#         te_symptoms = [translate_symptom(s) for s in en_symptoms]
+
+#         # Description
+#         desc_data = datasets['description'][datasets['description']['Disease'] == disease]
+#         details['en']['description'] = desc_data['Description'].values[0]
+#         details['te']['description'] = desc_data['Description_Telugu'].values[0]
+
+#         # Precautions
+#         prec_data = datasets['precautions'][datasets['precautions']['Disease'] == disease]
+#         details['en']['precautions'] = [prec_data[f'Precaution_{i}'].values[0] for i in range(1,5) if f'Precaution_{i}' in prec_data]
+#         details['te']['precautions'] = [prec_data[f'Precaution_{i}_Telugu'].values[0] for i in range(1,5) if f'Precaution_{i}_Telugu' in prec_data]
+
+#         # Medications
+#         med_data = datasets['medications'][datasets['medications']['Disease'] == disease]
+#         details['en']['medications'] = med_data['Medication'].tolist()
+#         details['te']['medications'] = med_data['Medication_Telugu'].tolist()
+
+#         # Diets
+#         diet_data = datasets['diets'][datasets['diets']['Disease'] == disease]
+#         details['en']['diets'] = diet_data['Diet'].tolist()
+#         details['te']['diets'] = diet_data['Diet_Telugu'].tolist()
+
+#         # Workout
+#         workout_data = datasets['workout'][datasets['workout']['disease'] == disease]
+#         details['en']['workout'] = workout_data['workout'].tolist()
+#         details['te']['workout'] = workout_data['workout_Telugu'].tolist()
+
+#         # Add symptoms
+#         details['en']['symptoms'] = en_symptoms
+#         details['te']['symptoms'] = te_symptoms
+
+#     except Exception as e:
+#         print(f"Error getting details for {disease}: {e}")
+#         return None
+    
+#     return details
+
+# @app.route('/', methods=['GET', 'POST'])
+# def home():
+#     if request.method == 'POST':
+#         symptoms = request.form.get('symptoms', '').strip()
+#         if not symptoms:
+#             return render_template('index.html', error="Please enter symptoms")
+        
+#         try:
+#             # Process symptoms
+#             symptoms_list = [s.strip().replace(' ', '_') for s in symptoms.split(',')]
+#             input_vector = symptom_mapping.transform([symptoms_list])
+#             predicted_diseases = model.predict(input_vector)
+            
+#             # Filter out HIV if it's a default prediction
+#             predicted_diseases = filter_hiv_disease(predicted_diseases)
+            
+#             # Prepare results
+#             results = []
+#             for disease in predicted_diseases:
+#                 details = get_disease_details(disease)
+#                 if details:
+#                     results.append({
+#                         'disease_en': disease,
+#                         'disease_te': disease_dict.get(disease, disease),  # Get from disease_translations
+#                         'input_symptoms_en': symptoms_list,
+#                         'input_symptoms_te': [translate_symptom(s) for s in symptoms_list],
+#                         'details': details
+#                     })
+            
+#             return render_template('index.html', results=results)
+        
+#         except Exception as e:
+#             return render_template('index.html', error=f"Prediction error: {str(e)}")
+    
+#     return render_template('index.html')
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+# from flask import Flask, request, render_template
+# import pickle
+# import pandas as pd
+# import warnings
+# import numpy as np
+# from sklearn.exceptions import InconsistentVersionWarning
+
+# # Suppress warnings
+# warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+
+# # Load dataset details
+# try:
+#     # Load symptoms data
+#     symptoms_df = pd.read_csv('datasets/symtoms_df.csv').fillna('')
+#     symptoms_df['Telugu'] = symptoms_df['Telugu'].str.strip()
+    
+#     # Load other datasets
+#     datasets = {
+#         'description': pd.read_csv('datasets/description.csv'),
+#         'precautions': pd.read_csv('datasets/precautions_df.csv'),
+#         'medications': pd.read_csv('datasets/medications.csv'),
+#         'diets': pd.read_csv('datasets/diets.csv'),
+#         'workout': pd.read_csv('datasets/workout_df.csv')
+#     }
+# except Exception as e:
+#     print(f"Error loading dataset files: {e}")
+#     exit(1)
+
+# # Load ML models
+# with warnings.catch_warnings():
+#     warnings.simplefilter("ignore")
+#     try:
+#         with open('symptom_disease_model.pkl', 'rb') as f:
+#             model = pickle.load(f)
+#         with open('symptom_mapping.pkl', 'rb') as f:
+#             symptom_mapping = pickle.load(f)
+#     except Exception as e:
+#         print(f"Error loading models: {e}")
+#         exit(1)
+
+# app = Flask(__name__)
+
+# def get_symptoms_for_disease(disease):
+#     """Get symptoms for a disease handling empty columns"""
+#     symptoms = []
+#     disease_rows = symptoms_df[symptoms_df['Disease'] == disease]
+    
+#     for _, row in disease_rows.iterrows():
+#         symptoms.extend([
+#             str(row[f'Symptom_{i}']).strip() 
+#             for i in range(1, 5) 
+#             if pd.notnull(row[f'Symptom_{i}']) and str(row[f'Symptom_{i}']).strip() != ''
+#         ])
+#     return list(set(symptoms))  # Remove duplicates
+
+# def translate_symptom(symptom):
+#     """Translate single symptom using the loaded dataframe"""
+#     translation = symptoms_df.loc[
+#         (symptoms_df['Symptom_1'] == symptom) |
+#         (symptoms_df['Symptom_2'] == symptom) |
+#         (symptoms_df['Symptom_3'] == symptom) |
+#         (symptoms_df['Symptom_4'] == symptom),
+#         'Telugu'
+#     ].values
+    
+#     if len(translation) > 0 and translation[0] != '':
+#         return translation[0]
+#     return symptom
+
+# def get_disease_details(disease):
+#     """Get comprehensive disease details in both languages"""
+#     details = {'en': {}, 'te': {}}
+    
+#     try:
+#         # Get symptoms
+#         en_symptoms = get_symptoms_for_disease(disease)
+#         te_symptoms = [translate_symptom(s) for s in en_symptoms]
+
+#         # Description
+#         desc_data = datasets['description'][datasets['description']['Disease'] == disease]
+#         details['en']['description'] = desc_data['Description'].values[0]
+#         details['te']['description'] = desc_data['Description_Telugu'].values[0]
+
+#         # Precautions
+#         prec_data = datasets['precautions'][datasets['precautions']['Disease'] == disease]
+#         details['en']['precautions'] = [prec_data[f'Precaution_{i}'].values[0] for i in range(1,5) if f'Precaution_{i}' in prec_data]
+#         details['te']['precautions'] = [prec_data[f'Precaution_{i}_Telugu'].values[0] for i in range(1,5) if f'Precaution_{i}_Telugu' in prec_data]
+
+#         # Medications
+#         med_data = datasets['medications'][datasets['medications']['Disease'] == disease]
+#         details['en']['medications'] = med_data['Medication'].tolist()
+#         details['te']['medications'] = med_data['Medication_Telugu'].tolist()
+
+#         # Diets
+#         diet_data = datasets['diets'][datasets['diets']['Disease'] == disease]
+#         details['en']['diets'] = diet_data['Diet'].tolist()
+#         details['te']['diets'] = diet_data['Diet_Telugu'].tolist()
+
+#         # Workout
+#         workout_data = datasets['workout'][datasets['workout']['disease'] == disease]
+#         details['en']['workout'] = workout_data['workout'].tolist()
+#         details['te']['workout'] = workout_data['workout_Telugu'].tolist()
+
+#         # Add symptoms
+#         details['en']['symptoms'] = en_symptoms
+#         details['te']['symptoms'] = te_symptoms
+
+#     except Exception as e:
+#         print(f"Error getting details for {disease}: {e}")
+#         return None
+    
+#     return details
+
+# @app.route('/', methods=['GET', 'POST'])
+# def home():
+#     if request.method == 'POST':
+#         symptoms = request.form.get('symptoms', '').strip()
+#         if not symptoms:
+#             return render_template('index.html', error="Please enter symptoms")
+        
+#         try:
+#             # Process symptoms
+#             symptoms_list = [s.strip().replace(' ', '_') for s in symptoms.split(',')]
+#             input_vector = symptom_mapping.transform([symptoms_list])
+#             predicted_diseases = model.predict(input_vector)
+            
+#             # Prepare results
+#             results = []
+#             for disease in predicted_diseases:
+#                 details = get_disease_details(disease)
+#                 if details:
+#                     results.append({
+#                         'disease_en': disease,
+#                         'disease_te': datasets['description'][
+#                             datasets['description']['Disease'] == disease
+#                         ]['Description_Telugu'].values[0],
+#                         'input_symptoms_en': symptoms_list,
+#                         'input_symptoms_te': [translate_symptom(s) for s in symptoms_list],
+#                         'details': details
+#                     })
+            
+#             return render_template('index.html', results=results)
+        
+#         except Exception as e:
+#             return render_template('index.html', error=f"Prediction error: {str(e)}")
+    
+#     return render_template('index.html')
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
 # from flask import Flask, request, render_template
 # import pickle
 # import pandas as pd

@@ -3,31 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disease Prediction</title>
+    <title>Medical Disease Prediction</title>
     <link href="https://fonts.cdnfonts.com/css/thornback" rel="stylesheet">
-                
     <link href="https://fonts.cdnfonts.com/css/prosto-sans" rel="stylesheet">
-                
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
     :root {
-    --primary: #3a7bd5;
-    --secondary: #00d2ff;
-    --accent: #00C853;
-    --background: #f8f9fa;
-    --text: #2d3436;
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --shadow-color: rgba(58, 123, 213, 0.2);
-}
+        --primary: #4CAF50; /* Light green */
+        --secondary: #8BC34A; /* Lighter green */
+        --accent: #CDDC39; /* Lime accent */
+        --background: #FFF9E6; /* Cream background */
+        --text: #2E7D32; /* Dark green text */
+        --card-bg: rgba(255, 255, 255, 0.95);
+        --shadow-color: rgba(76, 175, 80, 0.2);
+    }
 
-/* Medical Gradient Background with Pulse Animation */
-@keyframes gradientPulse {
-    0% { background-position: 0% 50% }
-    50% { background-position: 100% 50% }
-    100% { background-position: 0% 50% }
-}
-
-body {
+    /* Medical Background */
+    body {
     font-family: 'Prosto Sans', sans-serif;
     background:linear-gradient(-45deg,#77aed2, #bfbfbb,#578245);
     background-size: 400% 400%;
@@ -41,397 +33,438 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    }
+    @keyframes gradientPulse {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+    }
+    /* Floating Medical Elements */
+    .medical-element {
+        position: absolute;
+        z-index: -1;
+        animation: float 15s infinite linear;
+        opacity: 0.15;
+    }
 
-/* Fixed Main Container with Medical Border */
-.container {
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    width: 94vw;
-    height: 94vh;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-50px) rotate(180deg); }
+        100% { transform: translateY(0) rotate(360deg); }
+    }
 
-/* Medical Cross Decoration (Corner) */
-.container::before {
-    content: "✚";
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    color: var(--primary);
-    opacity: 0.2;
-}
+    /* Pulsing Medical Elements */
+    @keyframes pulse-glow {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
 
-/* Elegant Header with Pulse Animation */
-h1 {
-    color: var(--primary);
-    font-size: 2.2rem;
-    text-align: center;
-    margin: 0.5rem 0 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    position: relative;
-    display: inline-block;
-    align-self: center;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
+    .pulse {
+        animation: pulse-glow 4s infinite;
+    }
 
-h1::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--secondary);
-    border-radius: 3px;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { width: 60px; opacity: 1; }
-    50% { width: 80px; opacity: 0.7; }
-    100% { width: 60px; opacity: 1; }
-}
-
-/* Centered Input Section with Floating Effect */
-#inputSection {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    margin: 0 auto 1.5rem;
-    width: 80%;
-    max-width: 700px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-#inputSection:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(58, 123, 213, 0.2);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-}
-
-/* Elegant Input Field with Medical Icon */
-.input-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.input-wrapper::before {
-    content: "🩺";
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    color: var(--primary);
-    opacity: 0.7;
-}
-
-input[type="text"] {
-    padding: 0.9rem 1rem 0.9rem 3rem;
-    border: 2px solid rgba(58, 123, 213, 0.2);
-    border-radius: 12px;
-    font-size: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    transition: all 0.3s;
-    background: rgba(245, 248, 255, 0.5);
-    color: var(--text);
-}
-
-input[type="text"]:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.2);
-    outline: none;
-    background: white;
-}
-
-/* Luxurious Button with Hover Effect */
-button {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 0.9rem 2rem;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3);
-    position: relative;
-    overflow: hidden;
-    min-width: 200px;
-}
-
-button::after {
-    content: "→";
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0;
-    transition: all 0.3s;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(58, 123, 213, 0.4);
-    padding-right: 2.5rem;
-}
-
-button:hover::after {
-    opacity: 1;
-    right: 15px;
-}
-
-/* Medical Card Design with Heartbeat Animation */
-.disease-card {
-    background: var(--card-bg);
-    border-radius: 15px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    flex: 1;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.disease-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--primary), var(--secondary));
-    border-radius: 15px 0 0 15px;
-}
-
-/* Tab System with Smooth Transition */
-.language-tabs {
-    display: flex;
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
-    flex-shrink: 0;
-}
-
-.tab-button {
-    background: rgba(58, 123, 213, 0.1);
-    padding: 0.7rem 1.2rem;
-    border-radius: 10px;
-    font-weight: 600;
-    color: var(--text);
-    cursor: pointer;
-    border: none;
-    font-size: 0.95rem;
-    transition: all 0.3s;
-    position: relative;
-}
-
-.tab-button.active {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    box-shadow: 0 4px 10px rgba(58, 123, 213, 0.3);
-}
-
-.tab-button:not(.active):hover {
-    background: rgba(58, 123, 213, 0.2);
-}
-
-/* Tab Content with Fade Animation */
-.tab-content {
-    flex: 1;
-    overflow: auto;
-    padding: 1rem;
-    background: rgba(245, 248, 255, 0.3);
-    border-radius: 12px;
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* Content Sections with Medical Icons */
-h3 {
-    color: var(--primary);
-    font-size: 1.5rem;
-    margin: 0.5rem 0 1rem;
-    position: relative;
-    padding-left: 2rem;
-}
-
-h3::before {
-    content: "🩺";
-    position: absolute;
-    left: 0;
-    font-size: 1.3rem;
-}
-
-h4 {
-    color: var(--primary);
-    font-size: 1.2rem;
-    margin: 1.2rem 0 0.8rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px dashed rgba(58, 123, 213, 0.3);
-    position: relative;
-    padding-left: 1.8rem;
-}
-
-h4::before {
-    content: "•";
-    position: absolute;
-    left: 0.5rem;
-    color: var(--secondary);
-    font-size: 1.5rem;
-}
-
-/* Enhanced List Items with Hover Effects */
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0.8rem;
-}
-
-li {
-    padding: 0.8rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s;
-    border-left: 3px solid var(--accent);
-}
-
-li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    border-left: 3px solid var(--primary);
-}
-
-li::before {
-    content: "✓";
-    color: var(--accent);
-    font-size: 1.1rem;
-    margin-right: 0.8rem;
-    font-weight: bold;
-}
-
-/* Error Message with Pulse Animation */
-.error {
-    color: #e74c3c;
-    background: rgba(255, 238, 237, 0.8);
-    padding: 1rem;
-    border-radius: 10px;
-    border: 1px solid #ffccc7;
-    margin: 0.8rem 0;
-    font-size: 0.95rem;
-    animation: pulseError 2s infinite;
-}
-
-@keyframes pulseError {
-    0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.2); }
-    70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
-}
-
-/* Telugu Font Styling */
-[lang="te"] {
-    font-family: 'Noto Sans Telugu', 'Poppins', sans-serif;
-    line-height: 1.7;
-}
-
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--primary), var(--secondary));
-    border-radius: 4px;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
+    /* Main Container */
     .container {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-        padding: 1.2rem;
+        background: var(--card-bg);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px var(--shadow-color);
+        width: 94vw;
+        min-height: 94vh;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        margin: 3vh auto;
+        background-image: 
+            linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
     }
-    
-    #inputSection {
-        width: 95%;
-        padding: 1.2rem;
+
+    /* Medical Cross Decoration (Corner) */
+    .container::before {
+        content: "✚";
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        color: var(--primary);
+        opacity: 0.3;
     }
-    
+
+    /* Header with Pulse Animation */
     h1 {
-        font-size: 1.8rem;
+        color: var(--primary);
+        font-size: 2.2rem;
+        text-align: center;
+        margin: 0.5rem 0 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        position: relative;
+        display: inline-block;
+        align-self: center;
     }
-    
+
+    h1::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--secondary);
+        border-radius: 3px;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { width: 60px; opacity: 1; }
+        50% { width: 80px; opacity: 0.7; }
+        100% { width: 60px; opacity: 1; }
+    }
+
+    /* Input Section */
+    #inputSection {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        margin: 0 auto 1.5rem;
+        width: 80%;
+        max-width: 700px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid rgba(76, 175, 80, 0.2);
+    }
+
+    #inputSection:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+    }
+
+    /* Input Field with Medical Icon */
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .input-wrapper::before {
+        content: "🩺";
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: var(--primary);
+        opacity: 0.7;
+    }
+
+    input[type="text"] {
+        padding: 0.9rem 1rem 0.9rem 3rem;
+        border: 2px solid rgba(76, 175, 80, 0.2);
+        border-radius: 12px;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        transition: all 0.3s;
+        background: rgba(236, 255, 237, 0.5);
+        color: var(--text);
+    }
+
+    input[type="text"]:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        outline: none;
+        background: white;
+    }
+
+    /* Button Styles */
+    button {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 0.9rem 2rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        position: relative;
+        overflow: hidden;
+        min-width: 200px;
+    }
+
+    button::after {
+        content: "→";
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all 0.3s;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        padding-right: 2.5rem;
+    }
+
+    button:hover::after {
+        opacity: 1;
+        right: 15px;
+    }
+
+    /* Disease Card */
+    .disease-card {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        flex: 1;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: 1px solid rgba(76, 175, 80, 0.2);
+        animation: fadeIn 0.5s ease;
+    }
+
+    .disease-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        border-radius: 15px 0 0 15px;
+    }
+
+    /* Tab System */
+    .language-tabs {
+        display: flex;
+        gap: 0.8rem;
+        margin-bottom: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .tab-button {
+        background: rgba(76, 175, 80, 0.1);
+        padding: 0.7rem 1.2rem;
+        border-radius: 10px;
+        font-weight: 600;
+        color: var(--text);
+        cursor: pointer;
+        border: none;
+        font-size: 0.95rem;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .tab-button.active {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    }
+
+    .tab-button:not(.active):hover {
+        background: rgba(76, 175, 80, 0.2);
+    }
+
+    /* Tab Content */
+    .tab-content {
+        flex: 1;
+        overflow: auto;
+        padding: 1rem;
+        background: rgba(236, 255, 237, 0.3);
+        border-radius: 12px;
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* Content Sections */
+    h3 {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin: 0.5rem 0 1rem;
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    h3::before {
+        content: "🩺";
+        position: absolute;
+        left: 0;
+        font-size: 1.3rem;
+    }
+
+    h4 {
+        color: var(--primary);
+        font-size: 1.2rem;
+        margin: 1.2rem 0 0.8rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px dashed rgba(76, 175, 80, 0.3);
+        position: relative;
+        padding-left: 1.8rem;
+    }
+
+    h4::before {
+        content: "•";
+        position: absolute;
+        left: 0.5rem;
+        color: var(--secondary);
+        font-size: 1.5rem;
+    }
+
+    /* List Items */
     ul {
-        grid-template-columns: 1fr;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 0.8rem;
     }
-}
-</style>
+
+    li {
+        padding: 0.8rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+        border-left: 3px solid var(--accent);
+    }
+
+    li:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(76, 175, 80, 0.2);
+        border-left: 3px solid var(--primary);
+    }
+
+    li::before {
+        content: "✓";
+        color: var(--accent);
+        font-size: 1.1rem;
+        margin-right: 0.8rem;
+        font-weight: bold;
+    }
+
+    /* Error Message */
+    .error {
+        color: #e53935;
+        background: rgba(255, 235, 238, 0.8);
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid #ffcdd2;
+        margin: 0.8rem 0;
+        font-size: 0.95rem;
+        animation: pulseError 2s infinite;
+    }
+
+    @keyframes pulseError {
+        0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.2); }
+        70% { box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
+    }
+
+    /* Loading Animation */
+    .loader {
+        display: none;
+        width: 50px;
+        height: 50px;
+        margin: 20px auto;
+        border: 5px solid rgba(76, 175, 80, 0.2);
+        border-radius: 50%;
+        border-top-color: var(--primary);
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .container {
+            width: 100vw;
+            min-height: 100vh;
+            border-radius: 0;
+            padding: 1.2rem;
+            margin: 0;
+        }
+        
+        #inputSection {
+            width: 95%;
+            padding: 1.2rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        ul {
+            grid-template-columns: 1fr;
+        }
+        
+        .medical-element {
+            display: none;
+        }
+    }
+    </style>
 </head>
 <body>
+    <!-- Floating Medical Elements -->
+    <div class="medical-element pulse" style="top: 10%; left: 5%; font-size: 4rem;">💊</div>
+    <div class="medical-element" style="top: 30%; right: 10%; font-size: 3rem;">🩺</div>
+    <div class="medical-element pulse" style="bottom: 20%; left: 15%; font-size: 5rem;">🌿</div>
+    <div class="medical-element" style="bottom: 30%; right: 20%; font-size: 4rem;">🧪</div>
+
     <div class="container">
-        <h1 style="                                                                     font-family: 'Thornback', sans-serif;
-                                                
-        font-weight: lighter;                               
-        font-size: 1500;
-        color: black;
-">Disease Prediction System</h1>
+        <h1 style="font-family: 'Thornback', sans-serif; font-weight: lighter; color: var(--primary);">
+            Medical Disease Prediction
+        </h1>
         
         <!-- Input Form -->
         <div id="inputSection">
-            <form method="POST">
+            <form method="POST" id="predictionForm">
                 <label>Enter Symptoms (comma separated):</label>
-                <input type="text" name="symptoms" required>
-                <button type="submit">Predict</button>
+                <div class="input-wrapper">
+                    <input type="text" name="symptoms" required>
+                </div>
+                <button type="submit" id="predictButton">Predict</button>
+                <div class="loader" id="loader"></div>
                 {% if error %}<p class="error">{{ error }}</p>{% endif %}
             </form>
         </div>
 
         <!-- Results Section -->
         {% if results %}
-        <div id="resultsSection">
+        <div id="resultsSection" class="animate__animated animate__fadeIn">
             <h2>Prediction Results</h2>
             <button onclick="window.location.href='/'">New Prediction</button>
             
@@ -487,23 +520,34 @@ li::before {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Attach event listeners to all tab buttons
+            // Tab functionality
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const tabId = this.getAttribute('data-tab');
                     const card = this.closest('.disease-card');
                     
-                    // Deactivate all tabs in this card
                     card.querySelectorAll('.tab-button').forEach(btn => 
                         btn.classList.remove('active'));
                     card.querySelectorAll('.tab-content').forEach(tab => 
                         tab.classList.remove('active'));
                     
-                    // Activate clicked tab
                     this.classList.add('active');
                     document.getElementById(tabId).classList.add('active');
                 });
             });
+            
+            // Form submission
+            const form = document.getElementById('predictionForm');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    const loader = document.getElementById('loader');
+                    const button = document.getElementById('predictButton');
+                    if (loader && button) {
+                        button.style.display = 'none';
+                        loader.style.display = 'block';
+                    }
+                });
+            }
         });
     </script>
 </body>
